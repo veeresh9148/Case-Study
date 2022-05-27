@@ -1,0 +1,26 @@
+{
+  "details": [
+    {
+      "FirstName": "Veeresh",
+      "email": "veeresh@gmail.com",
+      "password": "Veeru@9148",
+      "LastName": "k",
+      "DateofBirth": "1998-03-04",
+      "cpassword": "Veeru@9148",
+      "MobileNo": "9148165694",
+      "Address": "Rajeeva nagara kottur, ballary, karnatak",
+      "id": 3
+    },
+    {
+      "FirstName": "Admin",
+      "email": "Admin@gmail.com",
+      "password": "Admin@1234",
+      "LastName": "Admin",
+      "DateofBirth": "2014-02-26",
+      "cpassword": "Admin@1234",
+      "MobileNo": "9901506789",
+      "Address": "Rajeeva nagara kottur, ballary, karnatak",
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+#home{
+    padding: 0px 5px;
+    text-decoration: none;
+}
+
+#home:hover{
+    color: rgb(240, 29, 29);
+}
