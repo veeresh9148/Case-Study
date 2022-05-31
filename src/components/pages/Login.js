@@ -1,5 +1,5 @@
  import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { VscEye } from "react-icons/vsc";
 import "./Register"
 import "./style.css"
@@ -120,7 +120,7 @@ function Login() {
           </div><br/>
           <button className='button'>Submit</button>
         </div><br/>
-        New User? Click Here<Link to="/Register" id="Register"> Register</Link>
+        {/* New User? Click Here<Link to="/Register" id="Register"> Register</Link> */}
         
       
       </form>

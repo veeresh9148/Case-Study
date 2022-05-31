@@ -1,0 +1,37 @@
+
+  .outerTable { 
+   border: thin #999900 solid; 
+   background-color: #f0f8ff
+  } 
+  .tableHeader { 
+    color:#0033ff;
+    border:  #999900;   
+    background-color: #f0f8ff;
+  } 
+   .mainLabel { 
+   color: #00008b; 
+   
+   font-size: 12px; 
+   font-weight: bold; 
+  } 
+  
+  .tblHeader{
+   color: White;  
+   font-size: 13px; 
+   font-weight: bold; 
+   text-align: center; 
+   background-color: #6495ed; 
+   border: thick #000066
+  } 
+  
+  .tblDataText{ 
+   color:#313b62;
+   font-family: arial,geneva,sans-serif; 
+   font-size: 12px; 
+   text-align: center; 
+   font-weight: bold; 
+   background-color:#ccccff ; 
+  } 
+  
+
+  

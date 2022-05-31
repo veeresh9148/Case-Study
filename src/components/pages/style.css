@@ -4,6 +4,7 @@ form {
     border-radius: 1rem;
     background-color: hsl(0, 22%, 81%);
     border: 4px solid hsl(0, 3%, 22%);
+    /* box-shadow: black; */
     display:inline-block;
   }
 label{
