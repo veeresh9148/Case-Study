@@ -1,144 +1,77 @@
-import React from 'react'
-import Navbar from '../NavSide/Navbar'
-import { useNavigate } from 'react-router-dom';
-import './Style.css'
+import React, {useState} from "react";
+import axios from "axios";
+
 export default function CreateServiceRequest() {
-	let navigate=useNavigate();
-	const HandleClick=()=>{
-		
-		navigate('/RequestList')
-	}
-	const HandleSubmit=()=>{
-		
-		navigate('/EmployeeHomePage')
-	}
+    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:""})
+
+    const handleChange = (e) => {
+        setNewRequests({...NewRequests, [e.target.name]:e.target.value})
+        
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+        axios.post("http://localhost:3001/NewRequests", NewRequests)
+        .then((res)=>{
+           console.log(res.data);
+           alert('You have successfully submitted the data..!!')
+        })
+        
+        .catch((err)=>{
+          console.log(err.message)
+        })
+    }
 
   return (
     <div>
-		<Navbar/>
-      {/* <form method="post" name="frmCreateRequest" action=""> */}
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>
-    	<table width="60%" align="center" border="0" cellpadding="6" cellspacing="4" bgcolor="#ccffcc" className="outerTable">
-    	<tr align="center" >
-			  <td class="tableHeader" align="center" colspan="4">
-			  <b>Create Service Request</b>
-			  </td>
-    	</tr>
-	    <tr>
-			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-			  <td align="left" class="mainLabel"  width="20%">
-			  Location
-			  </td>
-			  <td align="left" class="mainLabel">
-			  <select  name= "sltLocation" class="txbEnabledText">
-			   <option value="0">--Select--</option>
-			   <option value="1">BLR-SER1</option>
-			   <option value="2">BLR-SER2</option>
-			   <option value="3">BLR-BTR1</option>
-			   <option value="4">BLR-BTR2</option>
-			   <option value="5">CHN-PGR1</option>
-			   <option value="6">CHN-PGR2</option>
-			   <option value="7">CHN-PGR3</option>
-			  </select>
-			  </td>
-			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-	    <tr>
-			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-			  <td align="left" class="mainLabel"  width="20%">
-			  Cubical No.
-			  </td>
-			  <td align="left" class="mainLabel">
-			  <input type="text" name="txtCubical" class="txbEnabledText"/>
-			  </td>
-			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-			<tr>
-				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-				  <td align="left" class="mainLabel"  width="20%">
-					Department
-				  </td>
-				  <td align="left" class="mainLabel">
-				  <select  name= "sltDepartment" class="txbEnabledText">
-				  			   <option value="0">--Select--</option>
+        
+        <div>
+            <form onSubmit={handleSubmit}>
+            <h3>Create Service Request</h3>
+            <div className="row">
+            <label>Location:</label>
+            <select  name= "Location" class="dept">
+              <option value="0">--Select--</option>
+              <option value="1">BLR-SER1</option>
+              <option value="2">BLR-SER2</option>
+              <option value="3">BLR-BTR1</option>
+              <option value="4">BLR-BTR2</option>
+              <option value="5">CHN-PGR1</option>
+              <option value="6">CHN-PGR2</option>
+              <option value="7">CHN-PGR3</option>
+			      </select>
+                <label>Cubical No:</label>
+                <input type="number" name="CubicalNo" onChange={handleChange} autoComplete="off"/>
+            </div><br/>
+                <div className="row">
+                <label>	Department:</label>
+                <select  name= "Department" className="dept" onChange={handleChange}>
+				  			   <option value="0">Select</option>
 				  			   <option value="1">Training</option>
 				  			   <option value="2">HR</option>
 				  			   <option value="3">Infrastructure</option>
 				  			   <option value="4">Delivery</option>
-			  		</select>
-				  </td>
-				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-		  	 </tr>
-			 <tr>
-				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-				  <td align="left" class="mainLabel"  width="20%">
-				  Required By
-				  </td>
-				  <td align="left" class="mainLabel">
-				  <input type="text" name="txtReq" class="txbEnabledText"/>
-				  </td>
-				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-			 </tr>
- 		 <tr>
-			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-			  <td align="left" class="mainLabel"  width="20%">
-			  Request Type
-			  </td>
-			  <td align="left" class="mainLabel">
-			   <select name="sltAccountType" class="txbEnabledText">
-			  				<option value="0"></option>
+			  		   </select>
+                <label>Required By:</label>
+                <input type="text" name="RequiredBy" onChange={handleChange} autoComplete="off"/>
+                </div><br/>
+                <div className="row">
+                <label>Request Type:</label>
+                <select name="RequestType" className="dept1" onChange={handleChange}>
+			  				<option value="0"> Selected</option>
 			  				<option value="1">Job Request</option>
 			  				<option value="2">Software Request</option>
-			  				<option value="2">Hardware Request</option>
-			  </select>
-			  </td>
-			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-		 <tr>
-			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-			  <td align="left" class="mainLabel"  width="20%">
-			  Description
-			  </td>
-			  <td align="left" class="mainLabel">
-			   <textarea name="txtaDescription" class="txbEnabledText"></textarea>
-			  </td>
-			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-
-		 <tr>
-			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-			  <td align="left" class="mainLabel"  width="20%">
-			  Justification
-			  </td>
-			  <td align="left" class="mainLabel">
-			   <input type="text" name="txtJust" class="txbEnabledText"/>
-			  </td>
-			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-
-		 <tr >
-				<td align="center" colspan="4">
-				<div align="center">
-				<input type = "Button"   value = "Save"
-				onClick={HandleSubmit}/>  
-				<button name="btnCancel" title="Close"
-				onClick={HandleClick}>Close</button>
-				</div>
-				</td>
-  		  </tr>
-		  <tr>
-		  <td colspan="4" class="mainLabel" id = "srNum" >
-		  
-		  </td>
-		  </tr>
-    	</table>
-    </td>
-  </tr>
-  </table>
-  {/* </form> */}
-</div>
-   
+			  				<option value="3">Hardware Request</option>
+			          </select>
+                <label>	Description:</label>
+                <input type="text" name="Description" onChange={handleChange} autoComplete="off"/>
+                </div><br/>
+                <label>Justification:</label>
+                <input type="text" name="Justification" className="Justification" onChange={handleChange} autoComplete="off"/><br/>
+                <button type="submit" className="btn">Save</button>&nbsp;
+                <button type="submit" className="btn1">close</button>
+            </form>
+        </div>
+    </div>
   )
 }

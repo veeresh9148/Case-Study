@@ -29,7 +29,7 @@ function Register() {
     // setFormValues({ ...formValues, [e.target.name]:e.target.value})
     axios.post("http://localhost:3001/details", formValues)
     .then(res=>console.log(res.data))
-    .catch(err=>console.log(err.message))
+    .catch(err=>console.log(err.res.data))
   };
 
   useEffect(() => {

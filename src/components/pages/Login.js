@@ -71,7 +71,7 @@ function Login() {
     }else if (!passregx.test(values.password)) {
       // errors.password = "Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ";
       alert("Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ");
-    }else if(values.email==='Admin@gmail.com' && values.password==='Admin@1234'){
+    }else if(values.email==='Admin@gmail.com' && values.password==='Admin@9148'){
       navigate('./AdminHomePage')
     }else {
       navigate('./EmployeeHomePage')

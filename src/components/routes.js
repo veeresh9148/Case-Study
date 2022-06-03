@@ -18,10 +18,12 @@ import AdminRequestList from './Requests/AdminRequestList'
 import AdminRejectedViewServiceRequest from './Requests/AdminRejectedViewServiceRequest'
 import AdminCancelledViewServiceRequest from './Requests/AdminCancelledViewServiceRequest'
 import AdminCompletedViewServiceRequest from './Requests/AdminCompletedViewServiceRequest'
+import Details from './Requests/details';
+import Adminoldpage from './pages/Adminoldpage';
 
 
  function RouterExample (){
-
+    
     return(
         <div>
             {/* <h1>Service Request Management</h1> */}
@@ -31,6 +33,9 @@ import AdminCompletedViewServiceRequest from './Requests/AdminCompletedViewServi
                     <Route path="/Register" element = {<Register/>}/>
                     <Route path="/AdminHomePage" element = {<AdminHomePage/>}/>
                     <Route path="/EmployeeHomePage" element = {<EmployeeHomePage/>}/>
+                    <Route path="/Details" element = {<Details/>}/>
+                    <Route path="/Adminoldpage/:id" element = {<Adminoldpage/>}/>
+
 
                     <Route path="/RequestList" element = {<RequestList/>}/>
                     <Route path="/AdminRequestList" element = {<AdminRequestList/>}/>

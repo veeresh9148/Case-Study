@@ -1,37 +1,245 @@
+form {
+    box-sizing:content-box;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: hsl(0, 22%, 81%);
+    border: 4px solid hsl(0, 3%, 22%);
+    /* box-shadow: black; */
+    display:inline-block;
+  }
+label{
+    display:flex;
+    
+}
+.label{
+  display:flex;
+  text-align:left;
+  
+}
 
-  .outerTable { 
-   border: thin #999900 solid; 
-   background-color: #f0f8ff
-  } 
-  .tableHeader { 
-    color:#0033ff;
-    border:  #999900;   
-    background-color: #f0f8ff;
-  } 
-   .mainLabel { 
-   color: #00008b; 
-   
-   font-size: 12px; 
-   font-weight: bold; 
-  } 
-  
-  .tblHeader{
-   color: White;  
-   font-size: 13px; 
-   font-weight: bold; 
-   text-align: center; 
-   background-color: #6495ed; 
-   border: thick #000066
-  } 
-  
-  .tblDataText{ 
-   color:#313b62;
-   font-family: arial,geneva,sans-serif; 
-   font-size: 12px; 
-   text-align: center; 
-   font-weight: bold; 
-   background-color:#ccccff ; 
-  } 
-  
+select,input{
+    padding: 10px 50px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display:flex;
+    
+  }
+.btn1{
+  background-color: #5387c2;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  width: 20%;
+  margin-left: 90px;
 
+}
+.btn{
+  background-color: #5387c2;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  width: 20%;
+  margin-right: 90px;
+}
+.button{
+    background-color: #5387c2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    width: auto;
   
+  }
+
+.row{
+    column-count: 2;
+}
+/* .eye{
+  margin-bottom: 10px;
+} */
+
+/* .ui-message-success{
+ color: green;
+ display:inline-flexbox;
+} */
+.ui-message-success {
+  width:200px;
+  height:20px;
+  left:50%;
+  bottom:10px;
+  background-color: #0a703f;
+  font-family: Calibri;
+  font-size: 20px;
+  padding:10px;
+  text-align:center;
+  border-radius: 10px;
+}
+.dept{
+  padding: 10px 82px;
+}
+.dept1{
+  padding: 10px 66px;
+}
+.Justification{
+  padding-right:60%;
+}
+/* new added */
+.background {
+  background: WHITE
+	}
+ 
+ .embeddedProcessLink {
+  COLOR: #0000FF;
+  FONT-FAMILY: arial,geneva,sans-serif; 
+  FONT-SIZE: 11px; 
+  FONT-WEIGHT: bold; 
+  FONT-SYTLE: underline 
+} 
+
+.pageHeader { 
+ COLOR: #00008b; 
+ FONT-FAMILY: arial, geneva, sans-serif; 
+ FONT-SIZE: 12px; 
+ FONT-WEIGHT: bold; 
+ BACKGROUND-COLOR: #0000CC;
+  } 
+  
+.outerTable { 
+ border: thin #999900 solid; 
+ background-color: #f0f8ff
+} 
+.tableHeader { 
+  FONT-FAMILY :Bookman Old Style;
+  COLOR:#0033ff;
+  BORDER:  #999900;   
+ BACKGROUND-COLOR: #f0f8ff;
+} 
+ .mainLabel { 
+ COLOR: #00008b; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ FONT-SIZE: 12px; 
+ FONT-WEIGHT: bold; 
+} 
+
+ .txaEnabled{ 
+  COLOR: #00008b; 
+  FONT-FAMILY: arial,geneva,sans-serif; 
+  FONT-SIZE: 12px; 
+  TEXT-ALIGN: left; 
+  BORDER-COLOR: RGB(200,200,200); 
+  BORDER-STYLE: groove; 
+  
+  } 
+ 
+
+.txbEnabledText{ 
+ COLOR: #00008b; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ FONT-SIZE: 12px; 
+ TEXT-ALIGN: left; 
+ BORDER-COLOR: RGB(200,200,200); 
+ BORDER-STYLE: groove; 
+} 
+
+.tblHeader{
+ COLOR: White; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ FONT-SIZE: 13px; 
+ FONT-WEIGHT: bold; 
+ TEXT-ALIGN: center; 
+ background-color: #6495ed; 
+ border: thick #000066
+} 
+
+.tblDataText{ 
+ COLOR: RGB(0,0,0); 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ FONT-SIZE: 12px; 
+ TEXT-ALIGN: center; 
+ FONT-WEIGHT: bold; 
+ background-color:#ccccff ; 
+} 
+
+
+
+
+.navMenu { 
+ FONT-SIZE: 0.8em; 
+ COLOR: red; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ TEXT-DECORATION: none 
+} 
+
+A.navMenu { 
+ FONT-SIZE: 0.8em; 
+ COLOR: green; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ TEXT-DECORATION: none 
+} 
+
+A.navMenu:hover { 
+ FONT-SIZE: 0.8em; 
+ COLOR: red; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ TEXT-DECORATION: none 
+} 
+
+A.navMenu:active { 
+ FONT-SIZE: 0.8em; 
+ COLOR: white; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ TEXT-DECORATION: none 
+ } 
+ 
+ A.navMenu:link { 
+  FONT-SIZE: 0.8em; 
+  COLOR: black; 
+  FONT-FAMILY: arial,geneva,sans-serif; 
+  TEXT-DECORATION: none 
+ } 
+ 
+ A.navMenu:visited { 
+ FONT-SIZE: 0.8em; 
+ COLOR: red; 
+ FONT-FAMILY: arial,geneva,sans-serif; 
+ TEXT-DECORATION: none 
+} 
+
+
+
+.lblTitle { 
+ font-family: Arial, Helvetica, sans-serif; 
+ font-size: 18px; 
+ color: #00008b
+} 
+
+ 
+
+.blueBackGround { 
+ background-color: #00008b; 
+ height: 5 
+ } 
+ 
+ .orangeBackGround { 
+ background-color: #ccccff; 
+ height: 5 
+}
+
+ BUTTON { 
+ color : #FFFFFF; 
+ height: 22; 
+ background-color:  #6495ed; 
+ font-weight: bold; 
+ font-family: Verdana; 
+ font-size: 8pt; 
+ width:84; 
+ border-width : thin; 
+} 
