@@ -1,8 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
+import Navbar from "../NavSide/Navbar";
 
 export default function CreateServiceRequest() {
-    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:""})
+  const [Status, setStatus]=useState();
+  const [Locations, setLocations]=useState();
+  const [Departments, setDepartments]=useState();
+  const [RequestTypes, setRequestTypes]=useState();
+
+    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:"", RequestId: 555555,})
 
     const handleChange = (e) => {
         setNewRequests({...NewRequests, [e.target.name]:e.target.value})
@@ -21,25 +27,71 @@ export default function CreateServiceRequest() {
           console.log(err.message)
         })
     }
+    const StatusDetails=()=>{
+      axios
+      .get(`http://localhost:3001/Status`)
+      .then((Response)=>
+      setStatus(Response.data))
+         //console.log(Response.data)
+      .catch((err)=>{
+          console.log(err)
+          // setError(err.message);
+      });
+    }
+    const LocationsDetails=()=>{
+      
+    }
+    const DepartmentsDetails=()=>{
+      axios
+      .get(`http://localhost:3001/Department`)
+      .then((Response)=>
+      setDepartments(Response.data))
+         //console.log(Response.data)
+      .catch((err)=>{
+          console.log(err)
+          // setError(err.message);
+      });
+    }
+    const RequestTypesDetails=()=>{
+      axios
+      .get(`http://localhost:3001/RequestsTypes`)
+      .then((Response)=>
+      setRequestTypes(Response.data))
+         //console.log(Response.data)
+      .catch((err)=>{
+          console.log(err)
+          // setError(err.message);
+      });
+    }
+    useEffect(() => {
+      axios
+      .get(`http://localhost:3001/Location`)
+      .then((Response)=>
+      setLocations(Response.data))
+         //console.log(Response.data)
+      .catch((err)=>{
+          console.log(err)
+          //setError(err.message);
+      });
+
+    },[])
 
   return (
     <div>
-        
+        <Navbar/>
         <div>
             <form onSubmit={handleSubmit}>
             <h3>Create Service Request</h3>
             <div className="row">
             <label>Location:</label>
             <select  name= "Location" class="dept">
-              <option value="0">--Select--</option>
-              <option value="1">BLR-SER1</option>
-              <option value="2">BLR-SER2</option>
-              <option value="3">BLR-BTR1</option>
-              <option value="4">BLR-BTR2</option>
-              <option value="5">CHN-PGR1</option>
-              <option value="6">CHN-PGR2</option>
-              <option value="7">CHN-PGR3</option>
-			      </select>
+              <option value="">--Select--</option>
+            {Locations.map((post) => (
+              
+             <option value={post.id}>{post.location}</option> 
+              
+               ))} 
+            </select>
                 <label>Cubical No:</label>
                 <input type="number" name="CubicalNo" onChange={handleChange} autoComplete="off"/>
             </div><br/>

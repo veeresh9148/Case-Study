@@ -2,82 +2,88 @@
   "NewRequests": [
     {
       "RequestId": "111111",
+      "ReasonforRejection": "",
       "RequestType": "Software",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "30/05/2022",
-      "CommittedDate": "31/05/2022",
-      "CompletedDate": "31/05/2022",
+      "RequestedDate": "30-05-2022",
+      "AssignedDate": "30-05-2022",
+      "CommittedDate": "31-05-2022",
+      "CompletedDate": "31-05-2022",
       "Status": "Completed",
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
+      "Location": "BLR-SER1",
+      "CubicalNo": "2056",
+      "Department": "Training",
+      "RequiredBy": "30-06-2022",
+      "Description": "Installation of MS Word",
+      "Justification": "Required for training purposes",
       "id": 1
     },
     {
       "RequestId": "222222",
+      "ReasonforRejection": "",
       "RequestType": "Hardware",
-      "RequestedDate": "30/05/2022",
+      "RequestedDate": "30-05-2022",
       "AssignedDate": "",
       "CommittedDate": "",
       "CompletedDate": "",
       "Status": "Cancelled",
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
+      "Location": "BLR-SER1",
+      "CubicalNo": "2056",
+      "Department": "Training",
+      "RequiredBy": "30-05-2022",
+      "Description": "Sound Card",
+      "Justification": "Required for training purposes",
+      "ReasonforCancelletion": "Sound card already enabled in the trainer m/c",
       "id": 2
     },
     {
       "RequestId": "333333",
+      "ReasonforRejection": "Please raise a Hardware request for the same",
       "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
+      "RequestedDate": "30-05-2022",
       "AssignedDate": "",
       "CommittedDate": "",
       "CompletedDate": "",
-      "Status": " Rejected",
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
+      "Status": "Rejected",
+      "Location": "BLR-SER1",
+      "CubicalNo": "2056",
+      "Department": "Training",
+      "RequiredBy": "30-05-2022",
+      "Description": "Upgradation of RAM",
+      "Justification": "Required for training purposes",
       "id": 3
     },
     {
       "RequestId": "444444",
+      "ReasonforRejection": "",
       "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "30/05/2022",
-      "CommittedDate": "30/05/2022",
+      "RequestedDate": "30-05-2022",
+      "AssignedDate": "30-05-2022",
+      "CommittedDate": "30-05-2022",
       "CompletedDate": "",
       "Status": "Assigned",
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
+      "Location": "BLR-SER1",
+      "CubicalNo": "2056",
+      "Department": "Training",
+      "RequiredBy": "30-05-2022",
+      "Description": "Movement of m/c",
+      "Justification": "Required for training purposes",
       "id": 4
     },
     {
       "RequestId": "555555",
+      "ReasonforRejection": "",
       "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
+      "RequestedDate": "30-05-2022",
       "AssignedDate": "",
       "CommittedDate": "",
       "CompletedDate": "",
       "Status": "Requested",
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
+      "Location": "BLR-SER1",
+      "CubicalNo": "2056",
+      "Department": "Training",
+      "RequiredBy": "30-05-2022",
+      "Description": "Movement of m/c",
+      "Justification": "Required for training purposes",
       "id": 5
     }
   ],
@@ -95,6 +101,7 @@
   "details": [
     {
       "FirstName": "Veeresh",
+      "rollno": 2,
       "email": "veeresh@gmail.com",
       "password": "Veeru@9148",
       "LastName": "k",
@@ -106,6 +113,7 @@
     },
     {
       "FirstName": "Admin",
+      "rollno": 1,
       "email": "Admin@gmail.com",
       "password": "Admin@1234",
       "LastName": "Admin",
@@ -114,65 +122,55 @@
       "MobileNo": "9901506789",
       "Address": "Rajeeva nagara kottur, ballary, karnatak",
       "id": 4
-    },
-    {
-      "Location": "",
-      "CubicalNo": "",
-      "Department": "",
-      "RequiredBy": "",
-      "Description": "",
-      "Justification": "",
-      "id": 5
     }
   ],
-  "Requests": {
-    "Requests1":[{
-      "RequestId": "111111",
-      "RequestType": "Software",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "30/05/2022",
-      "CommittedDate": "31/05/2022",
-      "CompletedDate": "31/05/2022",
-      "Status": "Completed"
-    }],
-    "Requests2":[
-    {
-      "RequestId": "222222",
-      "RequestType": "Hardware",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "",
-      "CommittedDate": "",
-      "CompletedDate": "",
-      "Status": "Cancelled"
-    }],
-    "Requests3":[
+    "Location": [
       {
-      "RequestId": "333333",
-      "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "",
-      "CommittedDate": "",
-      "CompletedDate": "",
-      "Status": " Rejected"
-      }],
-      "Requests4":[{
-      "RequestId": "444444",
-      "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "30/05/2022",
-      "CommittedDate": "30/05/2022",
-      "CompletedDate": "",
-      "Status": "Assigned"
-      }],
-
-   "Requests5":[{
-      "RequestId": "555555",
-      "RequestType": "Job Request",
-      "RequestedDate": "30/05/2022",
-      "AssignedDate": "",
-      "CommittedDate": "",
-      "CompletedDate": "",
-      "Status": "Requested"
-      }]
+        "id":1,
+        "location":"BLR-SER1"
+      },
+      {
+        "id":2,
+        "location":"BLR-SER2"
+      },
+      {
+        "id":3,
+        "location":"BLR-BTR1"
+      },
+      {
+        "id":4,
+        "location":"BLR-BTR2"
+      },
+      {
+        "id":5,
+        "location":"CHN-PGR1"
+      },
+      {
+        "id":6,
+        "location":"CHN-PGR2"
+      },
+      {
+        "id":7,
+        "location":"CHN-PGR3"
+      }
+    ],
+    "Department": [
+      {
+        "id":1,
+        "Department_Name":["Trainig","HR", "Infrastructure", "Delivery"]
+      }
+    ],
+    "Status": [
+      {
+        "id":1,
+        "status":["Requested","Rejected","Cancelled","Assigned","Completed"]
+      }
+    ],
+    "RequestsTypes": [
+      {
+        "id":1,
+        "type":["Job Request","Hardware Request","Software Request"]
+      }
+    ]
+    
   }
-}

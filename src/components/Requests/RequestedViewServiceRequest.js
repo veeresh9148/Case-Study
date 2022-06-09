@@ -1,22 +1,49 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './Style.css'
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../NavSide/Navbar'
+import { useNavigate, useParams } from 'react-router-dom';
+
+import axios from 'axios';
 
 export default function RequestedViewServiceRequest() {
 	let navigate=useNavigate();
+	let params=useParams();
+	const [posts, setPosts] = useState([]);
+	const [details, setdetails] = useState({Status:"", ReasonforCancelletion:"", CommittedDate:""})
 	const HandleClick=()=>{
 		
 		navigate('/RequestList')
 	}
+	const DetailsHandle = (e) => {
+        setdetails({...details, [e.target.name]:e.target.value})
+    }
 	const HandleSubmit=()=>{
-		
-		navigate('/EmployeeHomePage')
+		axios
+        .patch(`http://localhost:3001/NewRequests/${params.id}`, details)
+        .then(res => (res.data))
+        .catch(err => console.log(err));
+     
+		//navigate('/AdminHomePage')
 	}
+	useEffect(() => {
+		//Access data from local server
+		console.log({params})
+		axios
+		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
+		.then((Response)=>
+		setPosts(Response.data))
+		//setId(Response.id))
+		   //console.log(Response.data)
+		.catch((err)=>{
+			console.log(err)
+			// setError(err.message);
+		});
+	  })
   return (
     <div>
-		<Navbar/>
-      {/* <form method="post" name="frmUpdateRequest" action=""> */}
+		
+		{ posts.map((post) => (
+                <div key={post.id}>
+    
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
@@ -32,7 +59,7 @@ export default function RequestedViewServiceRequest() {
 			  Location
 			  </td>
 			  <td align="left" class="mainLabel">
-			  BLR- SER1
+			  {post.Location}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -42,7 +69,7 @@ export default function RequestedViewServiceRequest() {
 			  Cubical No.
 			  </td>
 			  <td align="left" class="mainLabel">
-			  2056
+			  {post.CubicalNo}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -52,7 +79,7 @@ export default function RequestedViewServiceRequest() {
 					Department
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Training
+				  {post.Department}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 		  	 </tr>
@@ -62,7 +89,7 @@ export default function RequestedViewServiceRequest() {
 				  Required By
 				  </td>
 				  <td align="left" class="mainLabel">
-				   30/05/2022
+				  {post.RequiredBy}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -71,7 +98,7 @@ export default function RequestedViewServiceRequest() {
 			  <td align="left" class="mainLabel"  width="20%">
 			  Request Type
 			  </td>
-			  <td align="left" class="mainLabel">Job Request
+			  <td align="left" class="mainLabel">{post.RequestType}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -81,7 +108,7 @@ export default function RequestedViewServiceRequest() {
 		 			  Description
 		 			  </td>
 		 			  <td align="left" class="mainLabel">
-		 			  Movement of m/c
+		 			  {post.Description}
 		 			  </td>
 		 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -91,7 +118,7 @@ export default function RequestedViewServiceRequest() {
 			  Justification
 			  </td>
 			  <td align="left" class="mainLabel">
-			   Required for training purposes
+			  {post.Justification}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -113,17 +140,19 @@ export default function RequestedViewServiceRequest() {
 				  Status
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <select name="sltStatus" class="txbEnabledText" readonly>
-								<option value="0"> Selected</option>
-								<option value="1">Rejected</option>
-                <option value="2">Cancelled</option>
-								<option value="3">Assigned</option>
-                <option value="4" selected>Requested</option>
+				   <select name="Status" class="txbEnabledText" onChange={DetailsHandle}>
+					<option value="0"> Selected</option>
+					<option value="Rejected">Rejected</option>
+                	<option value="Cancelled">Cancelled</option>
+					<option value="Assighned">Assigned</option>
+                	<option value="Requested" selected>{post.Status}</option>
 
 				  </select>
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
+			
+
 			 {/* <tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
@@ -134,24 +163,24 @@ export default function RequestedViewServiceRequest() {
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr> */}
- 			<tr>
+ 			 <tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
 				  Reason for Cancellation
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <input type="text" name="txtReason" class="txbEnabledText" readonly/>
+				   <input type="text" name="ReasonforCancelletion" class="txbEnabledText" onChange={DetailsHandle}/>
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
 
-			<tr>
+			 <tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
 				  Committed Date
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <input type="date" name="txtCommitedDate" class="txbEnabledText" />
+				   <input type="date" name="CommittedDate" class="txbEnabledText" onChange={DetailsHandle}/>
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -172,7 +201,9 @@ export default function RequestedViewServiceRequest() {
     </td>
   </tr>
   </table>
-  {/* </form> */}
+  </div>
+			))
+		}
     </div>
   )
 }

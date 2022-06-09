@@ -1,17 +1,35 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './Style.css'
-import Navbar from '../NavSide/Navbar'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import axios from 'axios';
 export default function CompletedViewServiceRequest() {
   let navigate=useNavigate();
+  let params=useParams();
+	const [posts, setPosts] = useState([])
 	const HandleClick=()=>{
 		
 		navigate('/RequestList')
 	}
+  useEffect(() => {
+		//Access data from local server
+		console.log({params})
+		axios
+		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
+		.then((Response)=>
+		setPosts(Response.data))
+		//setId(Response.id))
+		   //console.log(Response.data)
+		.catch((err)=>{
+			console.log(err)
+			// setError(err.message);
+		});
+	  })
   return (
     <div>
-      <Navbar/>
-      {/* <form method="post" name="frmUpdateRequest" action=""> */}
+    
+      { posts.map((post) => (
+                <div key={post.id}>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
@@ -27,7 +45,7 @@ export default function CompletedViewServiceRequest() {
               Location
               </td>
               <td align="left" class="mainLabel">
-              BLR- SER1
+              {post.Location}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -37,7 +55,7 @@ export default function CompletedViewServiceRequest() {
               Cubical No.
               </td>
               <td align="left" class="mainLabel">
-              2056
+              {post.CubicalNo}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -47,7 +65,7 @@ export default function CompletedViewServiceRequest() {
                 Department
                 </td>
                 <td align="left" class="mainLabel">
-                Training
+                {post.Department}
                 </td>
                 <td align="right" class="mainLabel" width="20%">&nbsp;</td>
               </tr>
@@ -57,7 +75,7 @@ export default function CompletedViewServiceRequest() {
                 Required By
                 </td>
                 <td align="left" class="mainLabel">
-                30/05/2022
+                {post.RequiredBy}
                 </td>
                 <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -66,7 +84,7 @@ export default function CompletedViewServiceRequest() {
               <td align="left" class="mainLabel"  width="20%">
               Request Type
               </td>
-              <td align="left" class="mainLabel">Software
+              <td align="left" class="mainLabel">{post.RequestType}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -76,7 +94,7 @@ export default function CompletedViewServiceRequest() {
                   Description
                   </td>
                   <td align="left" class="mainLabel">
-                  Installation of MS Word
+                  {post.Description}
                   </td>
                   <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -86,7 +104,7 @@ export default function CompletedViewServiceRequest() {
               Justification
               </td>
               <td align="left" class="mainLabel">
-              Required for training purposes
+              {post.Justification}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
             </tr>
@@ -108,7 +126,7 @@ export default function CompletedViewServiceRequest() {
               Status
               </td>
               <td align="left" class="mainLabel">
-              Completed
+              {post.Status}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
           </tr>
@@ -119,7 +137,7 @@ export default function CompletedViewServiceRequest() {
               Committed Date
               </td>
               <td align="left" class="mainLabel">
-              30/05/2022
+              {post.CommittedDate}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
           </tr>
@@ -129,7 +147,7 @@ export default function CompletedViewServiceRequest() {
               Completed Date
               </td>
               <td align="left" class="mainLabel">
-              30/05/2022
+              {post.CompletedDate}
               </td>
               <td align="right" class="mainLabel" width="20%">&nbsp;</td>
           </tr>
@@ -148,7 +166,9 @@ export default function CompletedViewServiceRequest() {
         </td>
       </tr>
       </table>
-  {/* </form> */}
+      </div>
+			))
+		}
   </div>
   )
 }

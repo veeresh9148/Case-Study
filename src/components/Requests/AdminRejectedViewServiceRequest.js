@@ -1,20 +1,38 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './Style.css'
-import { useNavigate } from 'react-router-dom';
-import AdminNavbar from '../NavSide/AdminNavbar'
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function RejectedViewServiceRequest() {
+import axios from 'axios';
+
+export default function AdminRejectedViewServiceRequest() {
 	let navigate=useNavigate();
+	let params=useParams();
+	const [posts, setPosts] = useState([])
 	const HandleClick=()=>{
 		
 		navigate('/AdminRequestList')
 	}
+	useEffect(() => {
+		//Access data from local server
+		console.log({params})
+		axios
+		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
+		.then((Response)=>
+		setPosts(Response.data))
+		//setId(Response.id))
+		   //console.log(Response.data)
+		.catch((err)=>{
+			console.log(err)
+			// setError(err.message);
+		});
+	  })
   return (
     <div>
 		
-		<AdminNavbar/><br/><br/>
 		
-      {/* <form method="post" name="frmUpdateRequest" action=""> */}
+		{ posts.map((post) => (
+                <div key={post.id}>
+		
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
@@ -30,7 +48,7 @@ export default function RejectedViewServiceRequest() {
 			  Location
 			  </td>
 			  <td align="left" class="mainLabel">
-			  BLR- SER1
+			  {post.Location}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -40,7 +58,7 @@ export default function RejectedViewServiceRequest() {
 			  Cubical No.
 			  </td>
 			  <td align="left" class="mainLabel">
-			  2056
+			  {post.CubicalNo}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -50,7 +68,7 @@ export default function RejectedViewServiceRequest() {
 					Department
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Training
+				  {post.Department}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 		  	 </tr>
@@ -60,7 +78,7 @@ export default function RejectedViewServiceRequest() {
 				  Required By
 				  </td>
 				  <td align="left" class="mainLabel">
-				   30/05/2022
+				  {post.RequiredBy}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -69,7 +87,7 @@ export default function RejectedViewServiceRequest() {
 			  <td align="left" class="mainLabel"  width="20%">
 			  Request Type
 			  </td>
-			  <td align="left" class="mainLabel">Job Request
+			  <td align="left" class="mainLabel">{post.RequestType}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -79,7 +97,7 @@ export default function RejectedViewServiceRequest() {
 		 			  Description
 		 			  </td>
 		 			  <td align="left" class="mainLabel">
-		 			  Upgradation of RAM
+		 			  {post.Description}
 		 			  </td>
 		 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -89,7 +107,7 @@ export default function RejectedViewServiceRequest() {
 			  Justification
 			  </td>
 			  <td align="left" class="mainLabel">
-			   Required for training purposes
+			  {post.Justification}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -111,7 +129,7 @@ export default function RejectedViewServiceRequest() {
 				  Status
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Rejected
+				  {post.Status}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -121,7 +139,7 @@ export default function RejectedViewServiceRequest() {
 				  Reason for Rejection
 				  </td>
 				  <td align="left" class="mainLabel">
-				    Please raise a Hardware request for the same
+				  {post.ReasonforRejection}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -151,7 +169,9 @@ export default function RejectedViewServiceRequest() {
     </td>
   </tr>
   </table>
-  {/* </form> */}
+  </div>
+			))
+		}
 
     </div>
   )

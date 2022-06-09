@@ -1,17 +1,36 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './Style.css'
-import Navbar from '../NavSide/Navbar'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import axios from 'axios';
+
 export default function CancelledViewServiceRequest() {
 	let navigate=useNavigate();
+	let params=useParams();
+	const [posts, setPosts] = useState([])
 	const HandleClick=()=>{
 		
 		navigate('/RequestList')
 	}
+	useEffect(() => {
+		//Access data from local server
+		console.log({params})
+		axios
+		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
+		.then((Response)=>
+		setPosts(Response.data))
+		//setId(Response.id))
+		   //console.log(Response.data)
+		.catch((err)=>{
+			console.log(err)
+			// setError(err.message);
+		});
+	  })
   return (
     <div>
-		<Navbar/>
-      {/* <form method="post" name="frmUpdateRequest" action=""> */}
+	
+		{ posts.map((post) => (
+                <div key={post.id}>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
@@ -27,7 +46,7 @@ export default function CancelledViewServiceRequest() {
 			  Location
 			  </td>
 			  <td align="left" class="mainLabel">
-			  BLR- SER1
+			  {post.Location}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -37,7 +56,7 @@ export default function CancelledViewServiceRequest() {
 			  Cubical No.
 			  </td>
 			  <td align="left" class="mainLabel">
-			  2056
+			  {post.CubicalNo}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -47,7 +66,7 @@ export default function CancelledViewServiceRequest() {
 					Department
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Training
+				  {post.Department}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 		  	 </tr>
@@ -57,7 +76,7 @@ export default function CancelledViewServiceRequest() {
 				  Required By
 				  </td>
 				  <td align="left" class="mainLabel">
-				   30/05/2022
+				  {post.RequiredBy}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -66,7 +85,7 @@ export default function CancelledViewServiceRequest() {
 			  <td align="left" class="mainLabel"  width="20%">
 			  Request Type
 			  </td>
-			  <td align="left" class="mainLabel">Hardware
+			  <td align="left" class="mainLabel">{post.RequestType}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -76,7 +95,7 @@ export default function CancelledViewServiceRequest() {
 		 			  Description
 		 			  </td>
 		 			  <td align="left" class="mainLabel">
-		 			  Sound Card
+		 			  {post.Description}
 		 			  </td>
 		 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -86,7 +105,7 @@ export default function CancelledViewServiceRequest() {
 			  Justification
 			  </td>
 			  <td align="left" class="mainLabel">
-			   Required for training purposes
+			  {post.Justification}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 	  	 </tr>
@@ -108,7 +127,7 @@ export default function CancelledViewServiceRequest() {
 				  Status
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Cancelled
+				  {post.Status}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -118,7 +137,7 @@ export default function CancelledViewServiceRequest() {
 				  Reason for Cancellation
 				  </td>
 				  <td align="left" class="mainLabel">
-				    Sound card already enabled in the trainer m/c
+				  {post.ReasonforCancelletion}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -128,7 +147,7 @@ export default function CancelledViewServiceRequest() {
 				  Committed Date
 				  </td>
 				  <td align="left" class="mainLabel">
-
+					{post.CommittedDate}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>
@@ -148,7 +167,11 @@ export default function CancelledViewServiceRequest() {
     </td>
   </tr>
   </table>
-  {/* </form> */}
+  </div>
+  	))
+		}
+
+    
     </div>
   )
 }

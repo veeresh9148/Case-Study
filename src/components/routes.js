@@ -19,7 +19,8 @@ import AdminRejectedViewServiceRequest from './Requests/AdminRejectedViewService
 import AdminCancelledViewServiceRequest from './Requests/AdminCancelledViewServiceRequest'
 import AdminCompletedViewServiceRequest from './Requests/AdminCompletedViewServiceRequest'
 import Details from './Requests/details';
-import Adminoldpage from './pages/Adminoldpage';
+import AdminPage from './pages/AdminPage';
+import EmployeePage from './pages/EmployeePage';
 
 
  function RouterExample (){
@@ -29,14 +30,15 @@ import Adminoldpage from './pages/Adminoldpage';
             {/* <h1>Service Request Management</h1> */}
             <Router>
                 <Routes>
-                    <Route path="/" element= {<Login/>}/>
+                    
                     <Route path="/Register" element = {<Register/>}/>
                     <Route path="/AdminHomePage" element = {<AdminHomePage/>}/>
                     <Route path="/EmployeeHomePage" element = {<EmployeeHomePage/>}/>
                     <Route path="/Details" element = {<Details/>}/>
-                    <Route path="/Adminoldpage/:id" element = {<Adminoldpage/>}/>
+                    <Route path="/AdminPage/:id" element = {<AdminPage/>}/>
+                    <Route path="/EmployeePage/:id" element = {<EmployeePage/>}/>
 
-
+                    <Route path="/" element= {<Login/>}/>
                     <Route path="/RequestList" element = {<RequestList/>}/>
                     <Route path="/AdminRequestList" element = {<AdminRequestList/>}/>
                     <Route path="/CreateServiceRequest" element = {<CreateServiveRequest/>}/>
@@ -50,7 +52,7 @@ import Adminoldpage from './pages/Adminoldpage';
                     <Route path="/RequestedViewServiceRequest" element = {<RequestedViewServiceRequest/>}/>
                     <Route path="/AdminRequestedViewServiceRequest" element = {<AdminRequestedViewServiceRequest/>}/>
                     <Route path="/AdminAssignedViewServiceRequest" element = {<AdminAssignedViewServiceRequest/>}/>
-
+                    
                 </Routes>
             </Router>
         </div>

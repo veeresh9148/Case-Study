@@ -4,7 +4,7 @@ import AdminNavbar from '../NavSide/AdminNavbar'
 import {Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function RequestList() {
+export default function AdminRequestList() {
 	const  [Requests, setRequests] = useState([]);
   //const [error, setError] = useState([])
 	let navigate=useNavigate();
@@ -29,8 +29,8 @@ export default function RequestList() {
 		
   return (
     <div>
-		<AdminNavbar/>
-      {/* <form method="post" name="frmRequestDetails" action=""> */}
+		<AdminNavbar/><br/>
+     
 <table width="100%" border="0" cellspacing="0" cellpadding="4">
 	  <tr>
 	      <td>
@@ -59,7 +59,7 @@ export default function RequestList() {
             					 {Requests.length &&
 									Requests.map((post) => (
                 					<tr>
-                  					<td class="tblDataText" >&nbsp;<Link to={`/Adminoldpage/${post.id}`}>{post.RequestId} </Link> </td>
+                  					<td class="tblDataText" >&nbsp;<Link to={`/AdminPage/${post.id}`}>{post.RequestId} </Link> </td>
 			
 									<td class="tblDataText" >&nbsp; {post.RequestType} </td>
 									<td class="tblDataText" >&nbsp; {post.RequestedDate}</td>
@@ -70,58 +70,6 @@ export default function RequestList() {
 									</tr>
               					))
             					}
-								 {/* {Requests.Requests2 &&
-            					 Requests.Requests2.map((post) => (
-                					<tr>
-                  					<td class="tblDataText" >&nbsp;<Link to="/AdminCancelledViewServiceRequest">{post.RequestId} </Link> </td>
-									<td class="tblDataText" >&nbsp; {post.RequestType} </td>
-									<td class="tblDataText" >&nbsp; {post.RequestedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.AssignedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CommittedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CompletedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.Status} </td>
-									</tr>
-              					))
-            					}
-								 {Requests.Requests3 &&
-            					 Requests.Requests3.map((post) => (
-                					<tr>
-                  					<td class="tblDataText" >&nbsp;<Link to="/AdminRejectedViewServiceRequest">{post.RequestId} </Link> </td>
-									<td class="tblDataText" >&nbsp; {post.RequestType} </td>
-									<td class="tblDataText" >&nbsp; {post.RequestedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.AssignedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CommittedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CompletedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.Status} </td>
-									</tr>
-              					))
-            					}
-								 {Requests.Requests4 &&
-            					 Requests.Requests4.map((post) => (
-                					<tr>
-                  					<td class="tblDataText" >&nbsp;<Link to="/AdminAssignedViewServiceRequest">{post.RequestId} </Link> </td>
-									<td class="tblDataText" >&nbsp; {post.RequestType} </td>
-									<td class="tblDataText" >&nbsp; {post.RequestedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.AssignedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CommittedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CompletedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.Status} </td>
-									</tr>
-              					))
-            					}
-								 {Requests.Requests5 &&
-            					 Requests.Requests5.map((post) => (
-                					<tr>
-                  					<td class="tblDataText" >&nbsp;<Link to="/AdminRequestedViewServiceRequest">{post.RequestId} </Link> </td>
-									<td class="tblDataText" >&nbsp; {post.RequestType} </td>
-									<td class="tblDataText" >&nbsp; {post.RequestedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.AssignedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CommittedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.CompletedDate}</td>
-									<td class="tblDataText" >&nbsp; {post.Status} </td>
-									</tr>
-              					))
-            					} */}
 								
 			  			   
 			                </table>
@@ -142,10 +90,6 @@ export default function RequestList() {
 		  </td>
 	  </tr>
   </table>
-
-{/* </form> */}
-
-
     </div>
   )
 }

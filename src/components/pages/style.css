@@ -16,6 +16,10 @@ label{
   text-align:left;
   
 }
+.err{
+  color: red;
+  display:flexbox;
+}
 
 input[type=text],[type=password],[type=email],[type=number],[type=date] {
 

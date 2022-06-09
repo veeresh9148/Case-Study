@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { VscEye } from "react-icons/vsc";
 import "./Register"
 import "./style.css"
+import axios from 'axios';
 
 import { useState, useEffect } from "react";
 
@@ -15,7 +16,10 @@ function Login() {
   //errors
   const [formErrors, setFormErrors] = useState({});
 
-  const [isSubmit, setIsSubmit] = useState(false);
+  //const [isSubmit, setIsSubmit] = useState(false);
+ 
+  const [posts, setPost] = useState([]);
+  const [err, setErr] = useState('')
 
   let navigate=useNavigate();
 
@@ -42,19 +46,25 @@ function Login() {
   const handleSubmit = (e) =>{
     e.preventDefault();
     setFormErrors(validate(formValues));
-    setIsSubmit(true);
-    
   };
  
   useEffect(() => {
-    console.log(formErrors);
-    if(Object.keys(formErrors).length === 0 && isSubmit){
-     console.log(formValues);
-  
-      
-    }
+    
+    axios
+    .get(`http://localhost:3001/details`)
+    .then((Response)=>
+    setPost(Response.data))
+       //console.log(Response.data)
+    .catch((err)=>{
+        console.log(err)
+        // setError(err.message);
+    });
+    
   })
+  
   const validate = (values) => {
+   
+    
     const errors = {};
     const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const passregx = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -71,20 +81,32 @@ function Login() {
     }else if (!passregx.test(values.password)) {
       // errors.password = "Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ";
       alert("Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ");
-    }else if(values.email==='Admin@gmail.com' && values.password==='Admin@9148'){
+    }else 
+    {posts.map((post) => {
+      let emailId = post.email;
+      let  pass = post.password
+    if(values.email===emailId && values.password===pass && post.rollno===1){
       navigate('./AdminHomePage')
-    }else {
+      alert("You Are LoggedIn Successfully")
+    }else if(values.email===emailId && values.password===pass && post.rollno===2) {
       navigate('./EmployeeHomePage')
+      alert("You Are LoggedIn Successfully")
+    }else {
+      //alert('Please Enter Valid Details')
+      setErr('Please Enter Valid Details')
     }
+  })}
+  
     return errors;
+  
   };
+  
   return (
     
     <div className="App">
       
-      
-      {/* {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui message success">Signed In success</div>) : ( <pre>{JSON.stringify(formValues, undefined, 2)}</pre>)} */}
-      {/* {formErrors.length===0 && isSubmit ? <div><Register/></div> : <Login/>} */}
+      <h1>Service Request Management</h1><br/><br/>
+      <p className='err'>{err}</p>
       <form onSubmit={handleSubmit}>
         <h2>Login Form</h2>
         <div className="ui">

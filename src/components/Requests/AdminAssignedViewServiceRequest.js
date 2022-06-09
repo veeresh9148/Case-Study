@@ -1,139 +1,175 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './Style.css'
-import { useNavigate } from 'react-router-dom';
-import AdminNavbar from '../NavSide/AdminNavbar'
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function AssignedViewServiceRequest() {
+import axios from 'axios';
+
+export default function AdminAssignedViewServiceRequest() {
 	let navigate=useNavigate();
+	let params=useParams();
+	const [posts, setPosts] = useState([])
+	const [details, setdetails] = useState({Status:"", ReasonforRejection:""})
 	const HandleClick=()=>{
 		
 		navigate('/AdminRequestList')
 	}
+	const DetailsHandle = (e) => {
+        setdetails({...details, [e.target.name]:e.target.value})
+    }
 	const HandleSubmit=()=>{
-		
-		navigate('/AdminHomePage')
+		axios
+        .patch(`http://localhost:3001/NewRequests/${params.id}`, details)
+        .then(res => (res.data))
+        .catch(err => console.log(err));
+     
+		//navigate('/AdminHomePage')
 	}
+	useEffect(() => {
+		//Access data from local server
+		console.log({params})
+		axios
+		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
+		.then((Response)=>
+		setPosts(Response.data))
+		//setId(Response.id))
+		   //console.log(Response.data)
+		.catch((err)=>{
+			console.log(err)
+			// setError(err.message);
+		});
+	  },)
   return (
     <div>
-		<AdminNavbar/>
-      {/* <form method="post" name="frmUpdateRequest" action=""> */}
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		
+		{ posts.map((post) => (
+                <div key={post.id}>
+					
+     
+  	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
   <tr>
     <td>
     	<table width="60%" align="center" border="0" cellpadding="6" cellspacing="4" bgcolor="#ccffcc" class="outerTable">
-    	<tr align="center" >
+    		<tr align="center" >
 			  <td class="tableHeader" align="center" colspan="4">
 			  <b>View Service Request</b>
 			  </td>
-    	</tr>
-	    <tr>
+    		</tr>
+
+	    	<tr>
 			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 			  <td align="left" class="mainLabel"  width="20%">
 			  Location
 			  </td>
 			  <td align="left" class="mainLabel">
-			  BLR- SER1
+			  {post.Location}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-	    <tr>
+	  	 	</tr>
+
+	    	<tr>
 			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 			  <td align="left" class="mainLabel"  width="20%">
 			  Cubical No.
 			  </td>
 			  <td align="left" class="mainLabel">
-			  2056
+			  {post.CubicalNo}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
+	  	 	</tr>
+
 			<tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
 					Department
 				  </td>
 				  <td align="left" class="mainLabel">
-				  Training
+				 {post.Department}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-		  	 </tr>
-			 <tr>
+		  	</tr>
+
+			<tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
 				  Required By
 				  </td>
 				  <td align="left" class="mainLabel">
-				   30/05/2022
+				  {post.RequiredBy}
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-			 </tr>
- 		 <tr>
+			</tr>
+
+ 		 	<tr>
 			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 			  <td align="left" class="mainLabel"  width="20%">
 			  Request Type
 			  </td>
-			  <td align="left" class="mainLabel">Job Request
+			  <td align="left" class="mainLabel">{post.RequestType}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-		 <tr>
-		 			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-		 			  <td align="left" class="mainLabel"  width="20%">
-		 			  Description
-		 			  </td>
-		 			  <td align="left" class="mainLabel">
-		 			  Movement of m/c
-		 			  </td>
-		 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-		 <tr>
+	  	 	</tr>
+
+		 	<tr>
+		 		<td align="right" class="mainLabel" width="30%">&nbsp;</td>
+		 		<td align="left" class="mainLabel"  width="20%">
+		 		Description
+		 		</td>
+		 		<td align="left" class="mainLabel">
+		 		{post.Description}
+		 		</td>
+		 		<td align="right" class="mainLabel" width="20%">&nbsp;</td>
+	  	 	</tr>
+
+		 	<tr>
 			  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 			  <td align="left" class="mainLabel"  width="20%">
 			  Justification
 			  </td>
 			  <td align="left" class="mainLabel">
-			   Required for training purposes
+			  {post.Justification}
 			  </td>
 			  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-	  	 </tr>
-	  </table>
-	  <br/>
+	  	 	</tr>
+
+	  	</table>
+	  	<br/>
 
 
 	  	<table  width="55%" align="center" border="0" cellpadding="6" cellspacing="4" bgcolor="#ccffcc" class="outerTable">
+			<tr align="center" >
+				<td class="tableHeader" align="center" colspan="4">
+				<b>Status Details</b>
+				</td>
+			</tr>
 
-			  <tr align="center" >
-				  <td class="tableHeader" align="center" colspan="4">
-				  <b>Status Details</b>
-				  </td>
-			  </tr>
+			<tr>
+				<td align="right" class="mainLabel" width="30%">&nbsp;</td>
+				<td align="left" class="mainLabel"  width="20%">
+				Status
+				</td>
+				<td align="left" class="mainLabel">
+				<select name="Status" class="txbEnabledText" onChange={DetailsHandle} >
+						<option value="0"> Selected</option>
+						<option value="Completed">Completed</option>
+						<option value="Rejected">Rejected</option>
+                		<option value="Cancelled">Cancelled</option>
+						<option value="Assigned" selected>{post.Status}</option>
 
-			  <tr>
-				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-				  <td align="left" class="mainLabel"  width="20%">
-				  Status
-				  </td>
-				  <td align="left" class="mainLabel">
-				   <select name="sltStatus" class="txbEnabledText" readonly>
-								<option value="0"> Selected</option>
-								<option value="1">Completed</option>
-								<option value="2">Rejected</option>
-                <option value="3">Cancelled</option>
-								<option value="4" selected>Assigned</option>
-
-				  </select>
-				  </td>
-				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-			 </tr>
-			 <tr>
-				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-				  <td align="left" class="mainLabel"  width="20%">
-				  Reason for Rejection
-				  </td>
-				  <td align="left" class="mainLabel">
-				   <input type="text" name="txtReason" class="txbEnabledText" readonly />
-				  </td>
-				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-			 </tr>
+				</select>
+				</td>
+				<td align="right" class="mainLabel" width="20%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="right" class="mainLabel" width="30%">&nbsp;</td>
+				<td align="left" class="mainLabel"  width="20%">
+				Reason for Rejection
+				</td>
+				<td align="left" class="mainLabel">
+				<input type="text" name="ReasonforRejection" class="txbEnabledText" onChange={DetailsHandle} />
+				</td>
+				<td align="right" class="mainLabel" width="20%">&nbsp;</td>
+			</tr>
             {/* <tr>
 				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
 				  <td align="left" class="mainLabel"  width="20%">
@@ -146,18 +182,18 @@ export default function AssignedViewServiceRequest() {
 			 </tr> */}
 
 			<tr>
-				  <td align="right" class="mainLabel" width="30%">&nbsp;</td>
-				  <td align="left" class="mainLabel"  width="20%">
-				  Committed Date
-				  </td>
-				  <td align="left" class="mainLabel">
-				   30/05/2022
-				  </td>
-				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
-			 </tr>
+				<td align="right" class="mainLabel" width="30%">&nbsp;</td>
+				<td align="left" class="mainLabel"  width="20%">
+				Committed Date
+				</td>
+				<td align="left" class="mainLabel">
+				{post.CommittedDate}
+				</td>
+				<td align="right" class="mainLabel" width="20%">&nbsp;</td>
+			</tr>
 
 
-			 <tr >
+			<tr >
 				<td align="center" colspan="4">
 				<div align="center">
 				<button name="btnSave" title="SaveSR"
@@ -166,13 +202,16 @@ export default function AssignedViewServiceRequest() {
 				onClick={HandleClick}>Back</button>
 				</div>
 				</td>
-  		  </tr>
+  		  	</tr>
 
     	</table>
     </td>
   </tr>
   </table>
-  {/* </form> */}
+  			</div>
+					))
+				}
+  		
     </div>
   )
 }
