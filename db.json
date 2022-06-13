@@ -67,7 +67,8 @@
       "RequiredBy": "30-05-2022",
       "Description": "Movement of m/c",
       "Justification": "Required for training purposes",
-      "id": 4
+      "id": 4,
+      "ReasonforCancelletion": ""
     },
     {
       "RequestId": "555555",
@@ -124,53 +125,90 @@
       "id": 4
     }
   ],
+  "Requests": {
     "Location": [
       {
-        "id":1,
-        "location":"BLR-SER1"
+        "id": 1,
+        "location": "BLR-SER1"
       },
       {
-        "id":2,
-        "location":"BLR-SER2"
+        "id": 2,
+        "location": "BLR-SER2"
       },
       {
-        "id":3,
-        "location":"BLR-BTR1"
+        "id": 3,
+        "location": "BLR-BTR1"
       },
       {
-        "id":4,
-        "location":"BLR-BTR2"
+        "id": 4,
+        "location": "BLR-BTR2"
       },
       {
-        "id":5,
-        "location":"CHN-PGR1"
+        "id": 5,
+        "location": "CHN-PGR1"
       },
       {
-        "id":6,
-        "location":"CHN-PGR2"
+        "id": 6,
+        "location": "CHN-PGR2"
       },
       {
-        "id":7,
-        "location":"CHN-PGR3"
+        "id": 7,
+        "location": "CHN-PGR3"
       }
     ],
     "Department": [
       {
-        "id":1,
-        "Department_Name":["Trainig","HR", "Infrastructure", "Delivery"]
+        "id": 1,
+        "Department_Name": "Trainig"
+      },
+      {
+        "id": 2,
+        "Department_Name": "HR"
+      },
+      {
+        "id": 3,
+        "Department_Name": "Infrastructure"
+      },
+      {
+        "id": 4,
+        "Department_Name": "Delivery"
       }
     ],
     "Status": [
       {
-        "id":1,
-        "status":["Requested","Rejected","Cancelled","Assigned","Completed"]
+        "id": 1,
+        "status": "Requested"
+      },
+      {
+        "id": 2,
+        "status": "Rejected"
+      },
+      {
+        "id": 3,
+        "status": "Cancelled"
+      },
+      {
+        "id": 4,
+        "status": "Assigned"
+      },
+      {
+        "id": 5,
+        "status": "Completed"
       }
     ],
     "RequestsTypes": [
       {
-        "id":1,
-        "type":["Job Request","Hardware Request","Software Request"]
+        "id": 1,
+        "type": "Job Request"
+      },
+      {
+        "id": 2,
+        "type": "Hardware Request"
+      },
+      {
+        "id": 3,
+        "type": "Software Request"
       }
     ]
-    
   }
+}

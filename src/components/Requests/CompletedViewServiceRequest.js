@@ -13,7 +13,7 @@ export default function CompletedViewServiceRequest() {
 	}
   useEffect(() => {
 		//Access data from local server
-		console.log({params})
+		//console.log({params})
 		axios
 		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
 		.then((Response)=>
@@ -24,7 +24,7 @@ export default function CompletedViewServiceRequest() {
 			console.log(err)
 			// setError(err.message);
 		});
-	  })
+	  },[])
   return (
     <div>
     

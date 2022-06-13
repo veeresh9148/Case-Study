@@ -79,3 +79,21 @@ input[type=text],[type=password],[type=email],[type=number],[type=date] {
   border-radius: 10px;
 
 }
+.App1{
+  column-count: 2;
+  column-gap: 5px;
+  padding-left: 10rem;
+  padding-right: 18rem;
+}
+.App2{
+  /* box-sizing:content-box; */
+  box-shadow: #000000; 
+  padding: 2rem;
+  padding-bottom: 10rem;
+  border-radius: 1rem;
+    /* background-color: hsl(0, 22%, 81%); */
+    border: 4px solid hsl(0, 3%, 22%);
+    padding-bottom: 4rem;
+     display: block;
+   
+}

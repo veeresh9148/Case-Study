@@ -13,7 +13,7 @@ export default function Adminoldpage() {
   const [posts, setPost] = useState([]);
   useEffect(() => {
     //Access data from local server
-    console.log({params})
+    
     axios
     .get(`http://localhost:3001/NewRequests?id=${params.id}`)
     .then((Response)=>

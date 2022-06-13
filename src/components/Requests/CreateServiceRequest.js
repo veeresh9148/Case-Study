@@ -3,12 +3,10 @@ import axios from "axios";
 import Navbar from "../NavSide/Navbar";
 
 export default function CreateServiceRequest() {
-  const [Status, setStatus]=useState();
-  const [Locations, setLocations]=useState();
-  const [Departments, setDepartments]=useState();
-  const [RequestTypes, setRequestTypes]=useState();
 
-    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:"", RequestId: 555555,})
+  const [Locations, setLocations]=useState([]);
+
+    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:"", RequestId: 555555, Status:"Requested"})
 
     const handleChange = (e) => {
         setNewRequests({...NewRequests, [e.target.name]:e.target.value})
@@ -27,101 +25,86 @@ export default function CreateServiceRequest() {
           console.log(err.message)
         })
     }
-    const StatusDetails=()=>{
-      axios
-      .get(`http://localhost:3001/Status`)
-      .then((Response)=>
-      setStatus(Response.data))
-         //console.log(Response.data)
-      .catch((err)=>{
-          console.log(err)
-          // setError(err.message);
-      });
-    }
-    const LocationsDetails=()=>{
-      
-    }
-    const DepartmentsDetails=()=>{
-      axios
-      .get(`http://localhost:3001/Department`)
-      .then((Response)=>
-      setDepartments(Response.data))
-         //console.log(Response.data)
-      .catch((err)=>{
-          console.log(err)
-          // setError(err.message);
-      });
-    }
-    const RequestTypesDetails=()=>{
-      axios
-      .get(`http://localhost:3001/RequestsTypes`)
-      .then((Response)=>
-      setRequestTypes(Response.data))
-         //console.log(Response.data)
-      .catch((err)=>{
-          console.log(err)
-          // setError(err.message);
-      });
-    }
-    useEffect(() => {
-      axios
-      .get(`http://localhost:3001/Location`)
-      .then((Response)=>
-      setLocations(Response.data))
-         //console.log(Response.data)
-      .catch((err)=>{
-          console.log(err)
-          //setError(err.message);
-      });
+    // useEffect(() => {
+    //   axios
+    //   .get(`http://localhost:3001/Requests`)
+    //   .then((Response)=>
+    //   setLocations(Response.data))
+    //   .catch((err)=>{
+    //       console.log(err)
+    //   });
 
-    },[])
+    // },[])
+
+    useEffect(()=>{
+      
+      axios.get(`http://localhost:3001/Requests`)
+      .then((res)=>{
+        setLocations(res.data)
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+      },[])
 
   return (
     <div>
-        <Navbar/>
+        <Navbar/><br/>
         <div>
             <form onSubmit={handleSubmit}>
             <h3>Create Service Request</h3>
             <div className="row">
             <label>Location:</label>
-            <select  name= "Location" class="dept">
+            <select  name= "Location" class="dept" required>
               <option value="">--Select--</option>
-            {Locations.map((post) => (
+            {Locations.Location && Locations.Location.map((post) => (
               
              <option value={post.id}>{post.location}</option> 
               
                ))} 
             </select>
                 <label>Cubical No:</label>
-                <input type="number" name="CubicalNo" onChange={handleChange} autoComplete="off"/>
+                <input type="number" name="CubicalNo" onChange={handleChange} autoComplete="off" required/>
             </div><br/>
                 <div className="row">
                 <label>	Department:</label>
-                <select  name= "Department" className="dept" onChange={handleChange}>
-				  			   <option value="0">Select</option>
-				  			   <option value="1">Training</option>
-				  			   <option value="2">HR</option>
-				  			   <option value="3">Infrastructure</option>
-				  			   <option value="4">Delivery</option>
+                <select  name= "Department" onChange={handleChange} className="dept" required>
+				  			   <option value="">--Select--</option>
+				  			   {Locations.Department && Locations.Department.map((post) => (
+              
+              <option value={post.id}>{post.Department_Name}</option> 
+               
+                ))}
+				  			   
 			  		   </select>
                 <label>Required By:</label>
-                <input type="text" name="RequiredBy" onChange={handleChange} autoComplete="off"/>
+                <input type="text" name="RequiredBy" onChange={handleChange} autoComplete="off" required/>
                 </div><br/>
                 <div className="row">
                 <label>Request Type:</label>
-                <select name="RequestType" className="dept1" onChange={handleChange}>
-			  				<option value="0"> Selected</option>
-			  				<option value="1">Job Request</option>
-			  				<option value="2">Software Request</option>
-			  				<option value="3">Hardware Request</option>
+                <select name="RequestType" className="dept1" onChange={handleChange} required>
+			  				<option value=""> --Select--</option>
+			  				{Locations.RequestsTypes && Locations.RequestsTypes.map((post) => (
+              
+              <option value={post.id}>{post.type}</option> 
+               
+                ))}
 			          </select>
                 <label>	Description:</label>
-                <input type="text" name="Description" onChange={handleChange} autoComplete="off"/>
+                <input type="text" name="Description" onChange={handleChange} autoComplete="off" required/>
                 </div><br/>
+                <div className="row">
                 <label>Justification:</label>
-                <input type="text" name="Justification" className="Justification" onChange={handleChange} autoComplete="off"/><br/>
+                <input type="text" name="Justification" className="Justification" onChange={handleChange} autoComplete="off" required/><br/>
+                <label>Status:</label>
+                <input type="text" name="Status" className="Status" autoComplete="off" value={"Requested"} disabled/><br/>
+                </div>
+                
+                
+              
                 <button type="submit" className="btn">Save</button>&nbsp;
                 <button type="submit" className="btn1">close</button>
+                
             </form>
         </div>
     </div>

@@ -13,7 +13,7 @@ export default function EmployeePage() {
   const [posts, setPost] = useState([]);
   useEffect(() => {
     //Access data from local server
-    console.log({params})
+    
     axios
     .get(`http://localhost:3001/NewRequests?id=${params.id}`)
     .then((Response)=>
@@ -23,7 +23,7 @@ export default function EmployeePage() {
         console.log(err)
         // setError(err.message);
     });
-  })
+  },[])
 
   return ( 
     <div>

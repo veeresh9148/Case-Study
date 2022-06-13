@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export default function RequestedViewServiceRequest() {
 	let navigate=useNavigate();
+	const [Locations, setLocations]=useState([]);
 	let params=useParams();
 	const [posts, setPosts] = useState([]);
 	const [details, setdetails] = useState({Status:"", ReasonforCancelletion:"", CommittedDate:""})
@@ -26,7 +27,7 @@ export default function RequestedViewServiceRequest() {
 	}
 	useEffect(() => {
 		//Access data from local server
-		console.log({params})
+		//console.log({params})
 		axios
 		.get(`http://localhost:3001/NewRequests?id=${params.id}`)
 		.then((Response)=>
@@ -37,7 +38,16 @@ export default function RequestedViewServiceRequest() {
 			console.log(err)
 			// setError(err.message);
 		});
-	  })
+		axios.get(`http://localhost:3001/Requests`)
+      .then((res)=>{
+        setLocations(res.data)
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    
+	  },[])
+	  
   return (
     <div>
 		
@@ -140,11 +150,13 @@ export default function RequestedViewServiceRequest() {
 				  Status
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <select name="Status" class="txbEnabledText" onChange={DetailsHandle}>
-					<option value="0"> Selected</option>
-					<option value="Rejected">Rejected</option>
-                	<option value="Cancelled">Cancelled</option>
-					<option value="Assighned">Assigned</option>
+				   <select name="Status" class="txbEnabledText" onChange={DetailsHandle} required>
+					<option value=""> --Selected--</option>
+					{Locations.Status && Locations.Status.map((sts) => (
+              
+              <option value={sts.id}>{sts.status}</option> 
+               
+                ))}
                 	<option value="Requested" selected>{post.Status}</option>
 
 				  </select>
@@ -169,7 +181,7 @@ export default function RequestedViewServiceRequest() {
 				  Reason for Cancellation
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <input type="text" name="ReasonforCancelletion" class="txbEnabledText" onChange={DetailsHandle}/>
+				   <input type="text" name="ReasonforCancelletion" class="txbEnabledText" onChange={DetailsHandle} required/>
 				  </td>
 				  <td align="right" class="mainLabel" width="20%">&nbsp;</td>
 			 </tr>

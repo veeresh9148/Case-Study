@@ -13,6 +13,7 @@ export default function Navbar() {
           <Link to="#" id="Home"> Home</Link>
           <Link to="/CreateServiceRequest" id="CreateServiceRequest"> New Request</Link>
           <Link to="/RequestList" id="RequestList"> Request List</Link>
+          <Link to="/" id="nav"> Logout</Link>
         </div>
       </div>
     </div>

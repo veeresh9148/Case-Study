@@ -88,9 +88,9 @@ select,input{
 .dept1{
   padding: 10px 66px;
 }
-.Justification{
-  padding-right:60%;
-}
+/* .Justification{
+  padding-right:90%;
+} */
 /* new added */
 .background {
   background: WHITE

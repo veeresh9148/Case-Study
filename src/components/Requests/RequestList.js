@@ -81,7 +81,7 @@ export default function RequestList() {
 
 				<td align="center" >
 				<div>
-				{/* <button name="btnBack" onClick="return back() ">Back</button> */}
+		
 				<button name="btnBack" onClick={HandleClick}>Back</button>
 				</div>
 				</td>

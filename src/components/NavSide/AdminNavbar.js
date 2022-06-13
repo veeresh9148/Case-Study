@@ -14,6 +14,7 @@ export default function Navbar() {
         <div class="header-right">
           <Link to="/AdminHomePage" id="nav"> Home</Link>
           <Link to="/AdminRequestList" id="nav"> Request List</Link>
+          <Link to="/" id="nav"> Logout</Link>
         </div>
       </div>
     </div>
