@@ -8,6 +8,7 @@ export default function AssignedViewServiceRequest() {
 	let navigate=useNavigate();
 	let params=useParams();
 	const [posts, setPosts] = useState([])
+	const [Locations, setLocations]=useState([]);
 	const [details, setdetails] = useState({Status:"", ReasonforCancelletion:""})
 	const HandleClick=()=>{
 		
@@ -37,6 +38,14 @@ export default function AssignedViewServiceRequest() {
 			console.log(err)
 			// setError(err.message);
 		});
+
+		axios.get(`http://localhost:3001/Requests`)
+      .then((res)=>{
+        setLocations(res.data)
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
 	  },[])
   return (
     <div>
@@ -150,11 +159,14 @@ export default function AssignedViewServiceRequest() {
 				</td>
 				<td align="left" class="mainLabel">
 				<select name="Status" class="txbEnabledText" onChange={DetailsHandle} >
-						<option value="0"> Selected</option>
-						<option value="Completed">Completed</option>
-						<option value="Rejected">Rejected</option>
-                		<option value="Cancelled">Cancelled</option>
-						<option value="Assigned" selected>{post.Status}</option>
+						{/* <option value="">--- Selected----</option> */}
+						<option value={post.status} selected>{post.Status}</option>
+						{Locations.Status && Locations.Status.map((post) => (
+              
+              <option value={post.status}>{post.status}</option> 
+               
+                ))}
+						
 
 				</select>
 				</td>

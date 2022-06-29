@@ -21,6 +21,7 @@ export default function RequestedViewServiceRequest() {
 		axios
         .patch(`http://localhost:3001/NewRequests/${params.id}`, details)
         .then(res => (res.data))
+		alert('Updated')
         .catch(err => console.log(err));
      
 		//navigate('/AdminHomePage')
@@ -154,7 +155,7 @@ export default function RequestedViewServiceRequest() {
 					<option value=""> --Selected--</option>
 					{Locations.Status && Locations.Status.map((sts) => (
               
-              <option value={sts.id}>{sts.status}</option> 
+              <option value={sts.status}>{sts.status}</option> 
                
                 ))}
                 	<option value="Requested" selected>{post.Status}</option>

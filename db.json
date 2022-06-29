@@ -86,6 +86,20 @@
       "Description": "Movement of m/c",
       "Justification": "Required for training purposes",
       "id": 5
+    },
+    {
+      "Location": "",
+      "CubicalNo": "1111",
+      "Department": "2",
+      "RequiredBy": "aaaa",
+      "Description": "ssss",
+      "Justification": "aaaa",
+      "RequestId": 555555,
+      "Status": "Cancelled",
+      "RequestType": "Hardware Request",
+      "id": 6,
+      "ReasonforCancelletion": "aaaaa",
+      "CommittedDate": "2022-06-21"
     }
   ],
   "post": [
@@ -123,6 +137,20 @@
       "MobileNo": "9901506789",
       "Address": "Rajeeva nagara kottur, ballary, karnatak",
       "id": 4
+    },
+    {
+      "FirstName": "Virat",
+      "rollno": 2,
+      "email": "virat@gmail.com",
+      "password": "Virat@9148",
+      "LastName": "k",
+      "DateofBirth": "1998-03-04",
+      "cpassword": "Virat@9148",
+      "SecreteQuestion": "Mother Toungh",
+      "SecreteAnswer": "Kannada",
+      "MobileNo": "9148165694",
+      "Address": "Rajeeva nagara kottur, ballary, karnatak",
+      "id": 5
     }
   ],
   "Requests": {

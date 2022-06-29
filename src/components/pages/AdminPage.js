@@ -23,7 +23,7 @@ export default function Adminoldpage() {
         console.log(err)
         // setError(err.message);
     });
-  })
+  },[])
 
   return ( 
     <div>

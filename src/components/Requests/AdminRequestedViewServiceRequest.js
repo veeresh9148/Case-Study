@@ -8,6 +8,7 @@ export default function AdminRequestedViewServiceRequest() {
 	let navigate=useNavigate();
 	let params=useParams();
 	const [posts, setPosts] = useState([]);
+	const [Locations, setLocations]=useState([]);
 	const [details, setdetails] = useState({Status:"", ReasonforRejection:"", CommittedDate:""})
 	const HandleClick=()=>{
 		
@@ -37,6 +38,13 @@ export default function AdminRequestedViewServiceRequest() {
 			console.log(err)
 			// setError(err.message);
 		});
+		axios.get(`http://localhost:3001/Requests`)
+      .then((res)=>{
+        setLocations(res.data)
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
 	  },[])
   return (
     <div>
@@ -140,12 +148,14 @@ export default function AdminRequestedViewServiceRequest() {
 				  Status
 				  </td>
 				  <td align="left" class="mainLabel">
-				   <select name="Status" class="txbEnabledText" onChange={DetailsHandle}>
-					<option value="0"> Selected</option>
-					<option value="Rejected">Rejected</option>
-                	<option value="Cancelled">Cancelled</option>
-					<option value="Assighned">Assigned</option>
-                	<option value="Requested" selected>{post.Status}</option>
+					  <select>
+				  <option value=""> --Selected--</option>
+					{Locations.Status && Locations.Status.map((sts) => (
+              
+              <option value={sts.id}>{sts.status}</option> 
+               
+                ))}
+                	<option value={post.Status} selected>{post.Status}</option>
 
 				  </select>
 				  </td>

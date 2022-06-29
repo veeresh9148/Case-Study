@@ -26,6 +26,12 @@ function Register() {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    if(formErrors===0){
+      //console.log("first")
+      axios.post("http://localhost:3001/details", formValues)
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err))
+     }
     // setFormValues({ ...formValues, [e.target.name]:e.target.value})
   //  if(formErrors.length ===0 ){
   //   axios.post("http://localhost:3001/details", formValues)
@@ -121,15 +127,11 @@ const myFunction1=()=> {
      if (!values.SecreteAnswer) {
       errors.SecreteAnswer = "Secrete Answer is Required";
     }
-     if(formErrors===null){
-       
-       axios.post("http://localhost:3001/details", formValues)
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err.res.data))
-     }
+   
     return errors;
     
   }
+  
   return (
     <div>
      

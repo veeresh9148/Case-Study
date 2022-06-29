@@ -21,6 +21,7 @@ import AdminCompletedViewServiceRequest from './Requests/AdminCompletedViewServi
 import Details from './Requests/details';
 import AdminPage from './pages/AdminPage';
 import EmployeePage from './pages/EmployeePage';
+import ForgotPassword from './pages/ForgotPassword';
 
 
  function RouterExample (){
@@ -37,7 +38,7 @@ import EmployeePage from './pages/EmployeePage';
                     <Route path="/Details" element = {<Details/>}/>
                     <Route path="/AdminPage/:id" element = {<AdminPage/>}/>
                     <Route path="/EmployeePage/:id" element = {<EmployeePage/>}/>
-
+                    <Route path="/ForgotPassword" element = {<ForgotPassword/>}/>
                     <Route path="/" element= {<Login/>}/>
                     <Route path="/RequestList" element = {<RequestList/>}/>
                     <Route path="/AdminRequestList" element = {<AdminRequestList/>}/>

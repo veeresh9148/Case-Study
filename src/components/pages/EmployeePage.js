@@ -23,7 +23,7 @@ export default function EmployeePage() {
         console.log(err)
         // setError(err.message);
     });
-  },[])
+  },[params.id])
 
   return ( 
     <div>

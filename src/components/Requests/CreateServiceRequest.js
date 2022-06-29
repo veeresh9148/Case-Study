@@ -86,7 +86,7 @@ export default function CreateServiceRequest() {
 			  				<option value=""> --Select--</option>
 			  				{Locations.RequestsTypes && Locations.RequestsTypes.map((post) => (
               
-              <option value={post.id}>{post.type}</option> 
+              <option value={post.type}>{post.type}</option> 
                
                 ))}
 			          </select>
