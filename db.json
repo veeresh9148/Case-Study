@@ -88,18 +88,18 @@
       "id": 5
     },
     {
-      "Location": "",
-      "CubicalNo": "1111",
-      "Department": "2",
+      "Location": "BLR-SER2",
+      "CubicalNo": "111",
+      "Department": "1",
       "RequiredBy": "aaaa",
-      "Description": "ssss",
-      "Justification": "aaaa",
+      "Description": "ddddd",
+      "Justification": "sssss",
       "RequestId": 555555,
       "Status": "Cancelled",
       "RequestType": "Hardware Request",
       "id": 6,
       "ReasonforCancelletion": "aaaaa",
-      "CommittedDate": "2022-06-21"
+      "CommittedDate": "2022-07-12"
     }
   ],
   "post": [

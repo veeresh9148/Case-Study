@@ -49,10 +49,11 @@ function Login() {
   };
  
   useEffect(() => {
-    
+    sessionStorage.clear();
     axios
     .get(`http://localhost:3001/details`)
     .then((Response)=>
+    //console.log(Response.data) 
     setPost(Response.data))
        //console.log(Response.data)
     .catch((err)=>{
@@ -82,15 +83,21 @@ function Login() {
       // errors.password = "Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ";
       alert("Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ");
     }else 
-    {posts.map((post) => {
+    {console.log(posts)
+      posts.map((post) => {
       let emailId = post.email;
       let  pass = post.password
     if(values.email===emailId && values.password===pass && post.rollno===1){
+      alert("You Are LoggedIn Successfully")
+      localStorage.setItem("email", values.email);
+      localStorage.setItem("password", values.password);
+      //console.log(sessionStorage.getItem("email","password"))
       navigate('./AdminHomePage')
-      alert("You Are LoggedIn Successfully")
     }else if(values.email===emailId && values.password===pass && post.rollno===2) {
-      navigate('./EmployeeHomePage')
       alert("You Are LoggedIn Successfully")
+      sessionStorage.setItem("email", values.email);
+      sessionStorage.setItem("password", values.password);
+      navigate('./EmployeeHomePage')
     }else {
       //alert('Please Enter Valid Details')
       setErr('Please Enter Valid Details')

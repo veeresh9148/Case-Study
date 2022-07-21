@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { VscEye } from "react-icons/vsc";
 import axios from "axios";
 import "./style.css"
+import { toBeEmpty } from "@testing-library/jest-dom/dist/matchers";
 
 function Register() {
   const initialValues = { FirstName: "", email: "", password: "", LastName:"", DateofBirth:"", SecreteQuestion:"", SecreteAnswer:"", MobileNo:"", Address:"", rollno: 2 };
@@ -26,12 +27,7 @@ function Register() {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
-    if(formErrors===0){
-      //console.log("first")
-      axios.post("http://localhost:3001/details", formValues)
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
-     }
+    
     // setFormValues({ ...formValues, [e.target.name]:e.target.value})
   //  if(formErrors.length ===0 ){
   //   axios.post("http://localhost:3001/details", formValues)
@@ -43,9 +39,7 @@ function Register() {
 
   useEffect(() => {
     //console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      //console.log(formValues);
-    }
+    
     
      
     
@@ -77,18 +71,45 @@ const myFunction1=()=> {
 
     //whitespace characters like -tab, form feed, and line feed ,will not match.
     const fnameregx = /^[a-zA-Z ]{2,30}$/;
+    if (Object.values(formErrors).length === 0 && isSubmit) {
+      //console.log(formValues);
+    //if(values!==0){
+      axios.post("http://localhost:3001/details", formValues)
+      .then(res=>{console.log(res.data)
+      alert('Registered Successfully')})
+      .catch(err=>console.log(err))
+     }
 
-    if (!values.DateofBirth) {
-      errors.DateofBirth = "Date of Birth is required";
+    if (!values.FirstName) {
+      errors.FirstName = "First Name is Required";
+    } else if (!fnameregx.test(values.FirstName)) {
+      errors.FirstName = "This is not Valid Format";
     }
-
-     if (!values.email) {
+    if (!values.LastName) {
+      errors.LastName = "Last Name Required";
+    }
+    if (!values.MobileNo) {
+      errors.MobileNo = "Mobile No is Required";
+    }
+    if (!values.email) {
       errors.email = "Email Id is required";
     } else if (!emailregex.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-
-     if (!values.password) {
+    if (!values.Address) {
+      errors.Address = "Address is Required";
+    }
+    if (!values.DateofBirth) {
+      errors.DateofBirth = "Date of Birth is required";
+    }
+    if (!values.SecreteQuestion) {
+      errors.SecreteQuestion = "Secrete Question is Required";
+    }
+    
+    if (!values.SecreteAnswer) {
+      errors.SecreteAnswer = "Secrete Answer is Required";
+    }
+    if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length <= 6) {
       errors.password = "Password must be 6 characters";
@@ -98,54 +119,28 @@ const myFunction1=()=> {
       //errors.password = "Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ";
       alert("Your password must contain at least one uppercase letter, one lowercase letter, one special character, one number ");
     }
-     if (!values.cpassword) {
+    if (!values.cpassword) {
       errors.cpassword = "Confirm Password is required";
     } else if (values.password !== values.cpassword) {
       errors.cpassword = "password & confirm password must be same";
     }
-
-     if (!values.FirstName) {
-      errors.FirstName = "First Name is Required";
-    } else if (!fnameregx.test(values.FirstName)) {
-      errors.FirstName = "This is not Valid Format";
-    }
-
-     if (!values.LastName) {
-      errors.LastName = "Last Name Required";
-    }
-
-     if (!values.Address) {
-      errors.Address = "Address is Required";
-    }
-
-     if (!values.MobileNo) {
-      errors.MobileNo = "Mobile No is Required";
-    }
-     if (!values.SecreteQuestion) {
-      errors.SecreteQuestion = "Secrete Question is Required";
-    }
-     if (!values.SecreteAnswer) {
-      errors.SecreteAnswer = "Secrete Answer is Required";
-    }
+    
+    
    
     return errors;
     
   }
   
   return (
-    <div>
+    <div><br/>
      
-        <div className="container-fluid">
+        <div className="form">
         
-      <center>
-        {Object.keys(formErrors).length === 0 && isSubmit ? (
-          <div className="ui-message-success">Registered Successfully</div>
-        ) :null}
-      </center>
+      
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
         <h2>Register Form</h2>
-        <div className="ui form">
+        <div className="uiform">
         <div class="row">
         <div className="field">
             <label className="inputdata">First Name
@@ -293,12 +288,12 @@ const myFunction1=()=> {
             />
           </div>
           </div><br/>
-          <button className="btn">Submit</button>
+          <button className="btn" onClick={handleSubmit}>Submit</button>
         </div><br/>
         Already Account ? Click Here<Link to="/" id="welcome">
          Sign In
       </Link>
-      </form>
+      {/* </form> */}
       </div>
     </div>
   );
