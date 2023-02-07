@@ -1,5 +1,5 @@
 //import React,{useEffect, useState}  from 'react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import "./routes.css"
 import Login from './pages/Login';
@@ -44,6 +44,10 @@ import ForgotPassword from './pages/ForgotPassword';
     //     });
         
     //   },[])
+    useEffect(()=>{
+       
+
+    })
     
     return(
         <div>

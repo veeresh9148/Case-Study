@@ -88,18 +88,16 @@
       "id": 5
     },
     {
-      "Location": "BLR-SER2",
-      "CubicalNo": "111",
+      "Location": "BLR-SER1",
+      "CubicalNo": "4656",
       "Department": "1",
-      "RequiredBy": "aaaa",
-      "Description": "ddddd",
-      "Justification": "sssss",
-      "RequestId": 555555,
-      "Status": "Cancelled",
-      "RequestType": "Hardware Request",
-      "id": 6,
-      "ReasonforCancelletion": "aaaaa",
-      "CommittedDate": "2022-07-12"
+      "RequiredBy": "aasdsf",
+      "Description": "sadsd",
+      "Justification": "xcfdh",
+      "RequestId": 0.5577237727831355,
+      "Status": "Requested",
+      "RequestType": "Job Request",
+      "id": 6
     }
   ],
   "post": [

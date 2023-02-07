@@ -89,14 +89,14 @@ function Login() {
       let  pass = post.password
     if(values.email===emailId && values.password===pass && post.rollno===1){
       alert("You Are LoggedIn Successfully")
-      localStorage.setItem("email", values.email);
-      localStorage.setItem("password", values.password);
+      sessionStorage.setItem("id", post.id);
+     // sessionStorage.setItem("password", values.password);
       //console.log(sessionStorage.getItem("email","password"))
       navigate('./AdminHomePage')
     }else if(values.email===emailId && values.password===pass && post.rollno===2) {
       alert("You Are LoggedIn Successfully")
-      sessionStorage.setItem("email", values.email);
-      sessionStorage.setItem("password", values.password);
+      sessionStorage.setItem("id", post.id);
+      //sessionStorage.setItem("password", values.password);
       navigate('./EmployeeHomePage')
     }else {
       //alert('Please Enter Valid Details')

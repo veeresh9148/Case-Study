@@ -7,7 +7,7 @@ export default function CreateServiceRequest() {
 
   const [Locations, setLocations]=useState([]);
  
-    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:"", RequestId: 555555, Status:"Requested"})
+    const [NewRequests, setNewRequests] = useState({Location:"", CubicalNo:"", Department:"", RequiredBy:"",Description:"",Justification:"", RequestId: Math.random(), Status:"Requested"})
     const [Errors, setErrors] = useState({})
     const handleChange = (e) => {
         setNewRequests({...NewRequests, [e.target.name]:e.target.value})
@@ -136,3 +136,7 @@ export default function CreateServiceRequest() {
     </div>
   )
 }
+
+
+
+
